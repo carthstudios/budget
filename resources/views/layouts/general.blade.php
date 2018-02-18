@@ -72,7 +72,7 @@
                                                         <img alt="" class="img-circle" src="{{ Auth::user()->avatar }}">
                                                     @endif
 
-                                                    <span class="username">{{ Auth::user()->name }}</span>
+                                                    <span class="username username-hide-mobile">{{ Auth::user()->name }}</span>
                                                 </a>
                                                 <ul class="dropdown-menu dropdown-menu-default">
                                                     <li>

@@ -772,6 +772,11 @@ Page Header
       .page-header .page-header-top .top-menu .username-hide-mobile {
         display: none; } }
 
+@media (max-width: 480px) {
+  /* 480px */
+  .page-header .page-header-top .top-menu .username-hide-mobile {
+    display: none; } }
+
 /***  
 Pace - Page Progress
 ***/
