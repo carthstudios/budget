@@ -47,7 +47,7 @@
                                 <!-- BEGIN LOGO -->
                                 <div class="page-logo">
                                     <a href="{{ url('/') }}">
-                                        <img src="{{ asset('logo.png') }}" alt="logo" class="logo-default" height="20">
+                                        <img src="{{ asset('logo.png') }}" class="logo-default" height="20">
                                     </a>
                                 </div>
                                 <!-- END LOGO -->
