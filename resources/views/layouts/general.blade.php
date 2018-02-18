@@ -46,7 +46,7 @@
                             <div class="container">
                                 <!-- BEGIN LOGO -->
                                 <div class="page-logo">
-                                    <a href="/">
+                                    <a href="{{ url('/') }}">
                                         <img src="{{ asset('logo.png') }}" alt="logo" class="logo-default" height="20">
                                     </a>
                                 </div>
@@ -96,7 +96,7 @@
                                     @else
 
                                         <div class="socicons">
-                                            <a href="/login/google" class="socicon-btn socicon-btn-circle socicon-solid bg-red font-white bg-hover-blue socicon-google tooltips"></a>
+                                            <a href="{{ url('/login/google') }}" class="socicon-btn socicon-btn-circle socicon-solid bg-red font-white bg-hover-blue socicon-google tooltips"></a>
                                         </div>
 
                                     @endauth
