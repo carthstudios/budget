@@ -1,6 +1,6 @@
 <?php
 
-Route::redirect('/', '/login');
+Route::redirect('/', 'login');
 
 Route::prefix('/login')->group(function () {
     Route::view('/',                'login');
