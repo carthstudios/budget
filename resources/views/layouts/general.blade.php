@@ -19,6 +19,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css') }}" />
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/global/plugins/morris/morris.css') }}" />
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/global/plugins/socicon/socicon.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/global/plugins/ladda/ladda-themeless.min.css') }}">
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL STYLES -->
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/global/css/components.min.css') }}" id="style_components" />
@@ -85,7 +86,7 @@
                                                             <i class="icon-lock"></i> Lock Screen </a>
                                                     </li>
                                                     <li>
-                                                        <a href="page_user_login_1.html">
+                                                        <a href="{{ url('login/close') }}">
                                                             <i class="icon-key"></i> Log Out </a>
                                                     </li>
                                                 </ul>
@@ -256,6 +257,11 @@
         <script type="text/javascript" src="{{ asset('assets/global/plugins/flot/jquery.flot.categories.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/global/plugins/jquery-easypiechart/jquery.easypiechart.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/global/plugins/jquery.sparkline.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/pages/scripts/ui-buttons-spinners.min.js') }}"></script>
+
+        <script type="text/javascript" src="{{ asset('assets/global/plugins/ladda/spin.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/global/plugins/ladda/ladda.min.js') }}"></script>
+
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
         <script type="text/javascript" src="{{ asset('assets/global/scripts/app.min.js') }}"></script>

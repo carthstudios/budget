@@ -8,17 +8,11 @@ use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Session;
 use Laravel\Socialite\Facades\Socialite;
 
 class AccessController extends Controller
 {
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/dashboard';
-
     /**
      * Create a new controller instance.
      *
@@ -26,10 +20,16 @@ class AccessController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest', ['except' => ['logout']]);
     }
 
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        Session::flush();
 
+        return view('access.logout');
+    }
 
     public function google_login(Request $request)
     {
@@ -44,17 +44,16 @@ class AccessController extends Controller
 
         if (empty($lookedup_user))
         {
-            return view('login_not_auth');
+            return view('access.login_not_auth');
         }
-        elseif ($lookedup_user->name == 'N/A')
-        {
-            $lookedup_user->name = $google_user->name;
-            $lookedup_user->avatar = $google_user->avatar;
-            $lookedup_user->save();
-        }
+
+        // Update data at every logon
+        $lookedup_user->name = $google_user->name;
+        $lookedup_user->avatar = $google_user->avatar;
+        $lookedup_user->save();
 
         Auth::loginUsingId($lookedup_user->id, true);
 
-        return redirect($this->redirectTo);
+        return redirect('/dashboard');
     }
 }
