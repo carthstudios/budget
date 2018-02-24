@@ -21,7 +21,7 @@ class RecordsController extends Controller
     public function create(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'amount'    => 'required|numeric',
+            'amount'    => 'required|numeric|min:0',
             'category'  => 'required|numeric',
             'comment'   => 'required',
             'currency'  => 'required'

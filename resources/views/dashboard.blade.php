@@ -59,18 +59,18 @@
                             <select class="bs-select form-control" data-show-subtext="true" tabindex="-98" name="category">
                                 <option></option>
 
-                                <optgroup label="INCOMES">
-                                    @foreach(\App\Category::where('is_positive', true)->orderBy('name')->get() as $category)
-                                        <option value="{{ $category->id }}" @if(old('category') == $category->id) selected @endif data-content="{{ $category->name }} <span class='label lable-sm bg-green-jungle bg-font-green-jungle'> IN </span>">
-                                            IN - {{ $category->name }}
-                                        </option>
-                                    @endforeach
-                                </optgroup>
-
                                 <optgroup label="EXPENSES">
                                     @foreach(\App\Category::where('is_positive', false)->orderBy('name')->get() as $category)
                                         <option value="{{ $category->id }}" @if(old('category') == $category->id) selected @endif data-content="{{ $category->name }} <span class='label lable-sm bg-red bg-font-red'> OUT </span>">
                                             OUT - {{ $category->name }}
+                                        </option>
+                                    @endforeach
+                                </optgroup>
+
+                                <optgroup label="INCOMES">
+                                    @foreach(\App\Category::where('is_positive', true)->orderBy('name')->get() as $category)
+                                        <option value="{{ $category->id }}" @if(old('category') == $category->id) selected @endif data-content="{{ $category->name }} <span class='label lable-sm bg-green-jungle bg-font-green-jungle'> IN </span>">
+                                            IN - {{ $category->name }}
                                         </option>
                                     @endforeach
                                 </optgroup>
@@ -153,6 +153,90 @@
                         </div>
                     </form>
 
+                </div>
+            </div>
+
+
+
+            <div class="portlet light ">
+                <div class="portlet-title tabbable-line">
+                    <div class="caption caption-md">
+                        <i class="icon-globe theme-font hide"></i>
+                        <span class="caption-subject font-blue-madison bold uppercase">Last movements</span>
+                    </div>
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#tab_1_1" data-toggle="tab"> All famility </a>
+                        </li>
+                        <li>
+                            <a href="#tab_1_2" data-toggle="tab"> Mine only </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="portlet-body">
+                    <!--BEGIN TABS-->
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab_1_1">
+                            <div class="scroller" style="height: 320px;" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2">
+                                <ul class="feeds">
+
+                                    @foreach(\App\Record::orderBy('created_at', 'desc')->take(30)->get() as $record)
+                                        <li>
+                                            <div class="col1">
+                                                <div class="cont">
+                                                    <div class="cont-col1">
+                                                        @if($record->category->is_positive)
+                                                            <span class='label lable-sm bg-green-jungle bg-font-green-jungle'> +{{ number_format($record->amount/100, 2) }} </span>
+                                                        @else
+                                                            <span class='label lable-sm bg-red bg-font-red'> -{{ number_format($record->amount/100, 2) }} </span>
+                                                        @endif
+                                                    </div>
+                                                    <div class="cont-col2">
+                                                        <div class="desc">
+                                                            <b>{{ $record->user->name }}:</b>  {{ $record->comment }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col2">
+                                                <div class="date"> {{ \Carbon\Carbon::createFromTimeStamp(strtotime($record->created_at))->diffForHumans() }} </div>
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="tab_1_2">
+                            <div class="scroller" style="height: 337px;" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2">
+                                <ul class="feeds">
+                                    @foreach(\App\Record::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->take(30)->get() as $record)
+                                        <li>
+                                            <div class="col1">
+                                                <div class="cont">
+                                                    <div class="cont-col1">
+                                                        @if($record->category->is_positive)
+                                                            <span class='label lable-sm bg-green-jungle bg-font-green-jungle'> +{{ number_format($record->amount/100, 2) }} </span>
+                                                        @else
+                                                            <span class='label lable-sm bg-red bg-font-red'> -{{ number_format($record->amount/100, 2) }} </span>
+                                                        @endif
+                                                    </div>
+                                                    <div class="cont-col2">
+                                                        <div class="desc">
+                                                            <b>{{ $record->user->name }}:</b>  {{ $record->comment }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col2">
+                                                <div class="date"> {{ \Carbon\Carbon::createFromTimeStamp(strtotime($record->created_at))->diffForHumans() }} </div>
+                                            </div>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!--END TABS-->
                 </div>
             </div>
         </div>

@@ -6,10 +6,6 @@
         <meta charset="utf-8" />
         <title>Budget Tool | @yield('title')</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta content="width=device-width, initial-scale=1" name="viewport" />
-        <meta name="apple-mobile-web-app-title" content="BudgetApp" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <link rel="apple-touch-icon" href="/appicon.png" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
         <!-- BEGIN GLOBAL MANDATORY STYLES -->
@@ -33,7 +29,7 @@
         <!-- BEGIN THEME LAYOUT STYLES -->
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/layouts/layout3/css/layout.css') }}" />
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/layouts/layout3/css/themes/default.min.css') }}" id="style_color" />
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/layouts/layout3/css/custom.min.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/layouts/layout3/css/custom.css') }}" />
         <!-- END THEME LAYOUT STYLES -->
 
         <link rel="shortcut icon" href="favicon.ico" />
@@ -82,14 +78,10 @@
                                                 </a>
                                                 <ul class="dropdown-menu dropdown-menu-default">
                                                     <li>
-                                                        <a href="page_user_profile_1.html">
-                                                            <i class="icon-user"></i> My Profile </a>
+                                                        <i class="icon-user"></i>
+                                                        {{ Auth::user()->email }}
                                                     </li>
                                                     <li class="divider"> </li>
-                                                    <li>
-                                                        <a href="page_user_lock_1.html">
-                                                            <i class="icon-lock"></i> Lock Screen </a>
-                                                    </li>
                                                     <li>
                                                         <a href="{{ url('login/close') }}">
                                                             <i class="icon-key"></i> Log Out </a>
@@ -248,6 +240,7 @@
         <script type="text/javascript" src="{{ asset('assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/global/plugins/jquery.blockui.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/global/plugins/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
         <!-- END CORE PLUGINS -->
         <!-- BEGIN PAGE LEVEL PLUGINS -->
         <script type="text/javascript" src="{{ asset('assets/global/plugins/moment.min.js') }}"></script>
@@ -263,6 +256,8 @@
         <script type="text/javascript" src="{{ asset('assets/global/plugins/jquery-easypiechart/jquery.easypiechart.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/global/plugins/jquery.sparkline.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/global/plugins/bootstrap-select/js/bootstrap-select.min.js') }}"></script>
+
+
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
         <script type="text/javascript" src="{{ asset('assets/global/scripts/app.min.js') }}"></script>
