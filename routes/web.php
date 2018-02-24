@@ -1,6 +1,6 @@
 <?php
 
-Route::redirect('/', '/dashboard');
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::prefix('/login')->group(function () {
     Route::view('/',                'access.login')->name('login');
@@ -12,5 +12,3 @@ Route::prefix('/login')->group(function () {
 Route::prefix('/records')->group(function () {
     Route::post('/create',          'RecordsController@create');
 });
-
-Route::get('/dashboard', 'HomeController@index')->name('home');
