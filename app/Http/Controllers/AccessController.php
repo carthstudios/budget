@@ -38,7 +38,7 @@ class AccessController extends Controller
 
     public function google_callback(Request $request)
     {
-        $google_user = Socialite::driver('google')->user();
+        $google_user = Socialite::driver('google')->stateless()->user();
 
         $lookedup_user = User::where('email', $google_user->email)->first();
 
