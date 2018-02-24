@@ -9,4 +9,8 @@ Route::prefix('/login')->group(function () {
     Route::get('/close',            'AccessController@logout');
 });
 
+Route::prefix('/records')->group(function () {
+    Route::post('/create',          'RecordsController@create');
+});
+
 Route::get('/dashboard', 'HomeController@index')->name('home');
