@@ -56,12 +56,12 @@
                                 Category
                             </label>
 
-                            <select id="single" class="form-control select2" name="category">
+                            <select class="bs-select form-control" data-show-subtext="true" tabindex="-98" name="category">
                                 <option></option>
 
                                 <optgroup label="INCOMES">
                                     @foreach(\App\Category::where('is_positive', true)->orderBy('name')->get() as $category)
-                                        <option value="{{ $category->id }}" @if(old('category') == $category->id) selected @endif>
+                                        <option value="{{ $category->id }}" @if(old('category') == $category->id) selected @endif data-content="{{ $category->name }} <span class='label lable-sm bg-green-jungle bg-font-green-jungle'> IN </span>">
                                             IN - {{ $category->name }}
                                         </option>
                                     @endforeach
@@ -69,11 +69,12 @@
 
                                 <optgroup label="EXPENSES">
                                     @foreach(\App\Category::where('is_positive', false)->orderBy('name')->get() as $category)
-                                        <option value="{{ $category->id }}" @if(old('category') == $category->id) selected @endif>
+                                        <option value="{{ $category->id }}" @if(old('category') == $category->id) selected @endif data-content="{{ $category->name }} <span class='label lable-sm bg-red bg-font-red'> OUT </span>">
                                             OUT - {{ $category->name }}
                                         </option>
                                     @endforeach
                                 </optgroup>
+
                             </select>
                         </div>
 

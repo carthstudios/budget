@@ -16,8 +16,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css') }}" />
         <!-- END GLOBAL MANDATORY STYLES -->
         <!-- BEGIN PAGE LEVEL PLUGINS -->
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/global/plugins/select2/css/select2.min.css') }}" />
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/global/plugins/select2/css/select2-bootstrap.min.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/global/plugins/bootstrap-select/css/bootstrap-select.css') }}" />
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css') }}" />
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/global/plugins/morris/morris.css') }}" />
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/global/plugins/socicon/socicon.css') }}" />
@@ -247,7 +246,6 @@
         <script type="text/javascript" src="{{ asset('assets/global/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>
         <!-- END CORE PLUGINS -->
         <!-- BEGIN PAGE LEVEL PLUGINS -->
-        <script type="text/javascript" src="{{ asset('assets/global/plugins/select2/js/select2.full.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/global/plugins/moment.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/global/plugins/morris/morris.min.js') }}"></script>
@@ -260,12 +258,13 @@
         <script type="text/javascript" src="{{ asset('assets/global/plugins/flot/jquery.flot.categories.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/global/plugins/jquery-easypiechart/jquery.easypiechart.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/global/plugins/jquery.sparkline.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/global/plugins/bootstrap-select/js/bootstrap-select.min.js') }}"></script>
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
         <script type="text/javascript" src="{{ asset('assets/global/scripts/app.min.js') }}"></script>
         <!-- END THEME GLOBAL SCRIPTS -->
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
-        <script type="text/javascript" src="{{ asset('assets/custom/select2.init.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/pages/scripts/components-bootstrap-select.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/pages/scripts/dashboard.min.js') }}"></script>
         <!-- END PAGE LEVEL SCRIPTS -->
         <!-- BEGIN THEME LAYOUT SCRIPTS -->
