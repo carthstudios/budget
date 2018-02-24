@@ -54,6 +54,6 @@ class AccessController extends Controller
 
         Auth::loginUsingId($lookedup_user->id, true);
 
-        return redirect('/dashboard');
+        return redirect('/');
     }
 }
