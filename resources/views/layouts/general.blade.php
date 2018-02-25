@@ -78,8 +78,10 @@
                                                 </a>
                                                 <ul class="dropdown-menu dropdown-menu-default">
                                                     <li>
-                                                        <i class="icon-user"></i>
-                                                        {{ Auth::user()->email }}
+                                                        <a href="#">
+                                                            <i class="icon-user"></i>
+                                                            {{ Auth::user()->email }}
+                                                        </a>
                                                     </li>
                                                     <li class="divider"> </li>
                                                     <li>
@@ -112,31 +114,27 @@
 
                                     @auth
 
+                                        @php
+                                            if (Request::is('family'))
+                                                $active = "Family";
+                                            else
+                                                $active = "Dashboard";
+                                        @endphp
+
                                         <ul class="nav navbar-nav">
-                                            <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown active">
-                                                <a href="javascript:;">
+                                            <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown @if($active == "Dashboard") active @endif">
+                                                <a href="{{ url('/') }}">
                                                     <i class="icon-graph"></i>
                                                     Dashboard
                                                     <span class="arrow"></span>
                                                 </a>
-                                                <ul class="dropdown-menu pull-left">
-                                                    <li aria-haspopup="true" class=" active">
-                                                        <a href="index.html" class="nav-link  active">
-                                                            <i class="icon-bar-chart"></i> Default Dashboard
-                                                            <span class="badge badge-success">1</span>
-                                                        </a>
-                                                    </li>
-                                                    <li aria-haspopup="true" class=" ">
-                                                        <a href="dashboard_2.html" class="nav-link  ">
-                                                            <i class="icon-bulb"></i> Dashboard 2 </a>
-                                                    </li>
-                                                    <li aria-haspopup="true" class=" ">
-                                                        <a href="dashboard_3.html" class="nav-link  ">
-                                                            <i class="icon-graph"></i> Dashboard 3
-                                                            <span class="badge badge-danger">3</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
+                                            </li>
+                                            <li aria-haspopup="true" class="menu-dropdown mega-menu-dropdown @if($active == "Family") active @endif ">
+                                                <a href="javascript:;">
+                                                    <i class="fa fa-calculator"></i>
+                                                    Budget
+                                                    <span class="arrow"></span>
+                                                </a>
                                             </li>
                                             <li aria-haspopup="true" class="menu-dropdown mega-menu-dropdown  ">
                                                 <a href="javascript:;">
@@ -145,8 +143,8 @@
                                                     <span class="arrow"></span>
                                                 </a>
                                             </li>
-                                            <li aria-haspopup="true" class="menu-dropdown mega-menu-dropdown  ">
-                                                <a href="javascript:;">
+                                            <li aria-haspopup="true" class="menu-dropdown mega-menu-dropdown @if($active == "Family") active @endif ">
+                                                <a href="{{ url('/family') }}">
                                                     <i class="fa fa-users"></i>
                                                     Family
                                                     <span class="arrow"></span>

@@ -12,3 +12,9 @@ Route::prefix('/login')->group(function () {
 Route::prefix('/records')->group(function () {
     Route::post('/create',          'RecordsController@create');
 });
+
+Route::prefix('/family')->group(function () {
+    Route::get('/',                'FamilyController@view_list');
+    Route::post('/add',            'FamilyController@add');
+    Route::post('/name',           'FamilyController@save_name');
+});
