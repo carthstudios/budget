@@ -183,6 +183,7 @@
                                         $faimily_id = Auth::user()->family_id;
                                         $records = \App\Record::leftJoin('users', 'records.user_id', '=', 'users.id')
                                             ->where('users.family_id', '=', $faimily_id)
+                                            ->select('records.*', 'records.created_at as created_at')
                                             ->orderBy('records.created_at', 'desc')->take(30)->get()
                                     @endphp
                                     @foreach($records as $record)
