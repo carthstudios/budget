@@ -46,7 +46,7 @@
                             <label for="amount" class="control-label">Amount</label>
                             <div class="input-icon">
                                 <i class="fa fa-money"></i>
-                                <input type="number" class="form-control" placeholder="0.00" id="amount" name="amount" required value="{{ old('amount') }}" min="0.1"/>
+                                <input type="number" class="form-control" placeholder="0.00" id="amount" name="amount" required value="{{ old('amount') }}" />
                             </div>
                         </div>
 

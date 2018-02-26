@@ -129,14 +129,14 @@
                                                     <span class="arrow"></span>
                                                 </a>
                                             </li>
-                                            <li aria-haspopup="true" class="menu-dropdown mega-menu-dropdown @if($active == "Family") active @endif ">
+                                            <li aria-haspopup="true" class="menu-dropdown mega-menu-dropdown @if($active == "Budget") active @endif ">
                                                 <a href="javascript:;">
                                                     <i class="fa fa-calculator"></i>
                                                     Budget
                                                     <span class="arrow"></span>
                                                 </a>
                                             </li>
-                                            <li aria-haspopup="true" class="menu-dropdown mega-menu-dropdown  ">
+                                            <li aria-haspopup="true" class="menu-dropdown mega-menu-dropdown @if($active == "Configurations") active @endif ">
                                                 <a href="javascript:;">
                                                     <i class="fa fa-sliders"></i>
                                                     Configurations
