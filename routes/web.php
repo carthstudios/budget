@@ -17,13 +17,13 @@ Route::get('/family',               'FamilyController@view');
 
 Route::prefix('/admin')->group(function () {
     Route::prefix('/families')->group(function () {
-        Route::get('/',             'Admin\FamiliesController@view');
-        Route::post('/add',         'Admin\FamiliesController@family_add');
+        Route::get('/',             'admin\FamiliesController@view');
+        Route::post('/add',         'admin\FamiliesController@family_add');
         Route::prefix('/member')->group(function () {
-            Route::post('/add',             'Admin\FamiliesController@member_add');
-            Route::post('/add_new',         'Admin\FamiliesController@member_add_new');
-            Route::post('/rename',          'Admin\FamiliesController@member_rename');
-            Route::get('/remove/{user_id}', 'Admin\FamiliesController@member_remove');
+            Route::post('/add',             'admin\FamiliesController@member_add');
+            Route::post('/add_new',         'admin\FamiliesController@member_add_new');
+            Route::post('/rename',          'admin\FamiliesController@member_rename');
+            Route::get('/remove/{user_id}', 'admin\FamiliesController@member_remove');
         });
     });
 });
