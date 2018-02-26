@@ -140,7 +140,7 @@
 
                                             <li aria-haspopup="true" class="menu-dropdown mega-menu-dropdown @if(Request::is('family')) active @endif ">
                                                 <a href="{{ url('family') }}">
-                                                    <i class="fa fa-sliders"></i>
+                                                    <i class="fa fa-group"></i>
                                                     Family
                                                     <span class="arrow"></span>
                                                 </a>
