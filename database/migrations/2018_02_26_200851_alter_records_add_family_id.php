@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AlterUsersAddFamilyId extends Migration
+class AlterRecordsAddFamilyId extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AlterUsersAddFamilyId extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->integer('family_id')->nullable()->unsigned()->after('is_admin');
+        Schema::table('records', function (Blueprint $table) {
+            $table->integer('family_id')->unsigned()->after('user_id');
             $table->foreign('family_id')->references('id')->on('families');
         });
     }
@@ -26,7 +26,7 @@ class AlterUsersAddFamilyId extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('records', function (Blueprint $table) {
             $table->dropColumn('family_id');
             $table->dropForeign('family_id');
         });

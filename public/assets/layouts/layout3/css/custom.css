@@ -16,13 +16,13 @@
 
 .transactions li .col1 {
     float: left;
-    width: 70%;
+    width: 65%;
     clear: both;
 }
 
 .transactions li .col2 {
     float: left;
-    width: 30%;
+    width: 35%;
     text-align: right;
 }
 
@@ -36,5 +36,5 @@
     text-align: right;
     font-style: italic;
     color: #c1cbd0;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }

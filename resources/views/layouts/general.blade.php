@@ -114,41 +114,51 @@
 
                                     @auth
 
-                                        @php
-                                            if (Request::is('family'))
-                                                $active = "Family";
-                                            else
-                                                $active = "Dashboard";
-                                        @endphp
-
                                         <ul class="nav navbar-nav">
-                                            <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown @if($active == "Dashboard") active @endif">
+                                            <li aria-haspopup="true" class="menu-dropdown classic-menu-dropdown @if(Request::is('/')) active @endif">
                                                 <a href="{{ url('/') }}">
                                                     <i class="icon-graph"></i>
                                                     Dashboard
                                                     <span class="arrow"></span>
                                                 </a>
                                             </li>
-                                            <li aria-haspopup="true" class="menu-dropdown mega-menu-dropdown @if($active == "Budget") active @endif ">
+                                            <li aria-haspopup="true" class="menu-dropdown mega-menu-dropdown @if(Request::is('budget')) active @endif ">
                                                 <a href="javascript:;">
                                                     <i class="fa fa-calculator"></i>
                                                     Budget
                                                     <span class="arrow"></span>
                                                 </a>
                                             </li>
-                                            <li aria-haspopup="true" class="menu-dropdown mega-menu-dropdown @if($active == "Configurations") active @endif ">
+                                            <li aria-haspopup="true" class="menu-dropdown mega-menu-dropdown @if(Request::is('configurations')) active @endif ">
                                                 <a href="javascript:;">
                                                     <i class="fa fa-sliders"></i>
                                                     Configurations
                                                     <span class="arrow"></span>
                                                 </a>
                                             </li>
-                                            <li aria-haspopup="true" class="menu-dropdown mega-menu-dropdown @if($active == "Family") active @endif ">
-                                                <a href="{{ url('/family') }}">
-                                                    <i class="fa fa-users"></i>
+
+                                            <li aria-haspopup="true" class="menu-dropdown mega-menu-dropdown @if(Request::is('family')) active @endif ">
+                                                <a href="{{ url('family') }}">
+                                                    <i class="fa fa-sliders"></i>
                                                     Family
                                                     <span class="arrow"></span>
                                                 </a>
+                                            </li>
+
+                                            <li aria-haspopup="true" class="menu-dropdown mega-menu-dropdown @if(Request::is('admin/*')) active @endif">
+                                                <a href="javascript:;">
+                                                    <i class="fa fa-wrench"></i>
+                                                    Admin
+                                                    <span class="arrow"></span>
+                                                </a>
+                                                <ul class="dropdown-menu pull-left">
+                                                    <li aria-haspopup="true" class=" @if(Request::is('admin/family/*')) active @endif ">
+                                                        <a href="{{ url('/admin/families') }}" class="nav-link  ">
+                                                            <i class="fa fa-group"></i>
+                                                            Families
+                                                        </a>
+                                                    </li>
+                                                </ul>
                                             </li>
                                         </ul>
 

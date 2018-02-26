@@ -8,6 +8,6 @@ class Family extends Model
 {
     public function members()
     {
-        return $this->belongsToMany('App\User');
+        return $this->hasMany('App\User');
     }
 }

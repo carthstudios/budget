@@ -34,11 +34,15 @@
 
                         @csrf
 
-                        @if($errors->count())
-                            <div class="form-group">
-                                <div class="note note-danger">
-                                    <p> {{ $errors->first() }}</p>
-                                </div>
+                        @if($errors->any())
+                            <div class="alert alert-danger">
+                                <strong>Error!</strong> {{ $errors->first() }}
+                            </div>
+                        @endif
+
+                        @if(session()->has('success'))
+                            <div class="alert alert-success">
+                                <strong>Success!</strong> {{ session()->get('success') }}
                             </div>
                         @endif
 
@@ -46,7 +50,7 @@
                             <label for="amount" class="control-label">Amount</label>
                             <div class="input-icon">
                                 <i class="fa fa-money"></i>
-                                <input type="number" class="form-control" placeholder="0.00" id="amount" name="amount" required value="{{ old('amount') }}" />
+                                <input type="number" class="form-control" placeholder="0.00" id="amount" name="amount" required value="{{ old('amount') }}" step="0.01" min="0" />
                             </div>
                         </div>
 
@@ -177,70 +181,62 @@
                     <!--BEGIN TABS-->
                     <div class="tab-content">
                         <div class="tab-pane active" id="tab_1_1">
-                            <div class="scroller" style="height: 320px;" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2">
-                                <ul class="transactions">
-                                    @php
-                                        $faimily_id = Auth::user()->family_id;
-                                        $records = \App\Record::leftJoin('users', 'records.user_id', '=', 'users.id')
-                                            ->where('users.family_id', '=', $faimily_id)
-                                            ->select('records.*', 'records.created_at as created_at')
-                                            ->orderBy('records.created_at', 'desc')->take(30)->get()
-                                    @endphp
-                                    @foreach($records as $record)
-                                        <li>
-                                            <div class="col1">
-                                                <b> {{ $record->user->name }}</b>
-                                                <br />
-                                                {{ str_limit($record->category->name, 28) }}
-                                                <br />
-                                                <i>{{ str_limit($record->comment, 28) }}</i>
+                            <ul class="transactions">
+                                @php
+                                    $records = \App\Record::where('family_id', Auth::user()->family_id)->orderBy('created_at', 'desc')->take(15)->get();
+                                @endphp
+                                @foreach($records as $record)
+                                    <li>
+                                        <div class="col1">
+                                            <b> {{ $record->user->name }}</b>
+                                            <br />
+                                            {{ str_limit($record->category->name, 28) }}
+                                            <br />
+                                            <i>{{ str_limit($record->comment, 28) }}</i>
+                                        </div>
+                                        <div class="col2">
+                                            <div class="date">
+                                                {{ \Carbon\Carbon::createFromTimeStamp(strtotime($record->created_at))->diffForHumans() }}
                                             </div>
-                                            <div class="col2">
-                                                <div class="date">
-                                                    {{ \Carbon\Carbon::createFromTimeStamp(strtotime($record->created_at))->diffForHumans() }}
-                                                </div>
 
-                                                @if($record->category->is_positive)
-                                                    <span class='label lable-sm bg-green-jungle bg-font-green-jungle'>+{{ number_format($record->amount/100, 2) }}</span>
-                                                @else
-                                                    <span class='label lable-sm bg-red bg-font-red'>-{{ number_format($record->amount/100, 2) }}</span>
-                                                @endif
-                                            </div>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
+                                            @if($record->category->is_positive)
+                                                <span class='label lable-sm bg-green-jungle bg-font-green-jungle'>+{{ number_format($record->amount/100, 2) }}</span>
+                                            @else
+                                                <span class='label lable-sm bg-red bg-font-red'>-{{ number_format($record->amount/100, 2) }}</span>
+                                            @endif
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ul>
                         </div>
                         <div class="tab-pane" id="tab_1_2">
-                            <div class="scroller" style="height: 337px;" data-always-visible="1" data-rail-visible1="0" data-handle-color="#D7DCE2">
-                                <ul class="transactions">
-                                    @php
-                                        $records = \App\Record::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->take(30)->get()
-                                    @endphp
-                                    @foreach($records as $record)
-                                        <li>
-                                            <div class="col1">
-                                                <b> {{ $record->user->name }}</b>
-                                                <br />
-                                                {{ str_limit($record->category->name, 28) }}
-                                                <br />
-                                                <i>{{ str_limit($record->comment, 28) }}</i>
+                            <ul class="transactions">
+                                @php
+                                    $records = \App\Record::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->take(30)->get()
+                                @endphp
+                                @foreach($records as $record)
+                                    <li>
+                                        <div class="col1">
+                                            <b> {{ $record->user->name }}</b>
+                                            <br />
+                                            {{ str_limit($record->category->name, 28) }}
+                                            <br />
+                                            <i>{{ str_limit($record->comment, 28) }}</i>
+                                        </div>
+                                        <div class="col2">
+                                            <div class="date">
+                                                {{ \Carbon\Carbon::createFromTimeStamp(strtotime($record->created_at))->diffForHumans() }}
                                             </div>
-                                            <div class="col2">
-                                                <div class="date">
-                                                    {{ \Carbon\Carbon::createFromTimeStamp(strtotime($record->created_at))->diffForHumans() }}
-                                                </div>
 
-                                                @if($record->category->is_positive)
-                                                    <span class='label lable-sm bg-green-jungle bg-font-green-jungle'>+{{ number_format($record->amount/100, 2) }}</span>
-                                                @else
-                                                    <span class='label lable-sm bg-red bg-font-red'>-{{ number_format($record->amount/100, 2) }}</span>
-                                                @endif
-                                            </div>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
+                                            @if($record->category->is_positive)
+                                                <span class='label lable-sm bg-green-jungle bg-font-green-jungle'>+{{ number_format($record->amount/100, 2) }}</span>
+                                            @else
+                                                <span class='label lable-sm bg-red bg-font-red'>-{{ number_format($record->amount/100, 2) }}</span>
+                                            @endif
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ul>
                         </div>
                     </div>
                     <!--END TABS-->

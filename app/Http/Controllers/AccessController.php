@@ -42,7 +42,7 @@ class AccessController extends Controller
 
         $lookedup_user = User::where('email', $google_user->email)->first();
 
-        if (empty($lookedup_user))
+        if (empty($lookedup_user) || $lookedup_user->family_id == null)
         {
             return view('access.login_not_auth');
         }

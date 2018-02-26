@@ -15,4 +15,9 @@ class Record extends Model
     {
         return $this->belongsTo('App\Category');
     }
+
+    public function family()
+    {
+        return $this->belongsTo('App\Family');
+    }
 }

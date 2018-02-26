@@ -20,6 +20,15 @@ class RecordsController extends Controller
 
     public function create(Request $request)
     {
+        // Only users with a family can create records
+        if (Auth::user()->family_id == null)
+        {
+            return redirect()
+                ->back()
+                ->withErrors(["You are not part of a family, so you can't create records!"])
+                ->withInput();
+        }
+
         $validator = Validator::make($request->all(), [
             'amount'    => 'required|numeric|min:0',
             'category'  => 'required|numeric',
@@ -41,19 +50,20 @@ class RecordsController extends Controller
 
         if (in_array($currency, ['EUR', 'USD', 'SGD']))
         {
-            $category = Category::find(intval($request->input('category')));
-            $amount *= Swap::latest("$currency/CHF")->getValue() * ($category->is_positive ? 0.97 : 1.03);
-            $comment .= " (from $currency)";
+            $category    = Category::find(intval($request->input('category')));
+            $amount     *= Swap::latest("$currency/CHF")->getValue() * ($category->is_positive ? 0.97 : 1.03);
+            $comment    .= " (from $currency)";
         }
 
         $new_record = new Record;
         $new_record->date           = Carbon::now();
         $new_record->user_id        = Auth::user()->id;
+        $new_record->family_id      = Auth::user()->family_id;
         $new_record->amount         = $amount;
         $new_record->category_id    = intval($request->input('category'));
         $new_record->comment        = $comment;
         $new_record->save();
 
-        return view('records.save_confirmation');
+        return redirect()->back()->with('success', "New record created!");
     }
 }

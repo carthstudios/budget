@@ -13,8 +13,17 @@ Route::prefix('/records')->group(function () {
     Route::post('/create',          'RecordsController@create');
 });
 
-Route::prefix('/family')->group(function () {
-    Route::get('/',                'FamilyController@view_list');
-    Route::post('/add',            'FamilyController@add');
-    Route::post('/name',           'FamilyController@save_name');
+Route::get('/family',               'FamilyController@view');
+
+Route::prefix('/admin')->group(function () {
+    Route::prefix('/families')->group(function () {
+        Route::get('/',             'Admin\FamiliesController@view');
+        Route::post('/add',         'Admin\FamiliesController@family_add');
+        Route::prefix('/member')->group(function () {
+            Route::post('/add',             'Admin\FamiliesController@member_add');
+            Route::post('/add_new',         'Admin\FamiliesController@member_add_new');
+            Route::post('/rename',          'Admin\FamiliesController@member_rename');
+            Route::get('/remove/{user_id}', 'Admin\FamiliesController@member_remove');
+        });
+    });
 });

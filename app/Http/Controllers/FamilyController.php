@@ -2,39 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class FamilyController extends Controller
 {
-    public function view_list(Request $request)
+    public function __construct()
     {
-        return view('family.viewlist');
+        $this->middleware('auth');
     }
 
-    public function add(Request $request)
+    public function view(Request $request)
     {
-        $email      = $request->get('email');
-        $family_id  = Auth::user()->family_id;
-
-        $user = new User;
-        $user->email = $email;
-        $user->family_id = $family_id;
-        $user->save();
-
-        return redirect()->back();
-    }
-
-    public function save_name(Request $request)
-    {
-        $user_id    = $request->get('user_id');
-        $name       = $request->get('name');
-
-        $user = User::find($user_id);
-        $user->name = $name;
-        $user->save();
-
-        return redirect()->back();
+        return view('family');
     }
 }
