@@ -16,6 +16,7 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/global/plugins/bootstrap-switch/css/bootstrap-switch.min.css') }}" />
         <!-- END GLOBAL MANDATORY STYLES -->
         <!-- BEGIN PAGE LEVEL PLUGINS -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/global/plugins/bootstrap-sweetalert/sweetalert.css') }}" />
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/global/plugins/bootstrap-select/css/bootstrap-select.css') }}" />
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css') }}" />
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/global/plugins/morris/morris.css') }}" />
@@ -145,21 +146,23 @@
                                                 </a>
                                             </li>
 
-                                            <li aria-haspopup="true" class="menu-dropdown mega-menu-dropdown @if(Request::is('admin/*')) active @endif">
-                                                <a href="javascript:;">
-                                                    <i class="fa fa-wrench"></i>
-                                                    Admin
-                                                    <span class="arrow"></span>
-                                                </a>
-                                                <ul class="dropdown-menu pull-left">
-                                                    <li aria-haspopup="true" class=" @if(Request::is('admin/family/*')) active @endif ">
-                                                        <a href="{{ url('/admin/families') }}" class="nav-link  ">
-                                                            <i class="fa fa-group"></i>
-                                                            Families
-                                                        </a>
-                                                    </li>
-                                                </ul>
-                                            </li>
+                                            @if(\Illuminate\Support\Facades\Auth::user()->is_admin)
+                                                <li aria-haspopup="true" class="menu-dropdown mega-menu-dropdown @if(Request::is('admin/*')) active @endif">
+                                                    <a href="javascript:;">
+                                                        <i class="fa fa-wrench"></i>
+                                                        Admin
+                                                        <span class="arrow"></span>
+                                                    </a>
+                                                    <ul class="dropdown-menu pull-left">
+                                                        <li aria-haspopup="true" class=" @if(Request::is('admin/family/*')) active @endif ">
+                                                            <a href="{{ url('/admin/families') }}" class="nav-link  ">
+                                                                <i class="fa fa-group"></i>
+                                                                Families
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            @endif
                                         </ul>
 
                                     @endauth
@@ -264,13 +267,14 @@
         <script type="text/javascript" src="{{ asset('assets/global/plugins/jquery-easypiechart/jquery.easypiechart.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/global/plugins/jquery.sparkline.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/global/plugins/bootstrap-select/js/bootstrap-select.min.js') }}"></script>
-
+        <script type="text/javascript" src="{{ asset('assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js') }}"></script>
 
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
         <script type="text/javascript" src="{{ asset('assets/global/scripts/app.min.js') }}"></script>
         <!-- END THEME GLOBAL SCRIPTS -->
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
+        <script type="text/javascript" src="{{ asset('assets/pages/scripts/ui-sweetalert.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/pages/scripts/components-bootstrap-select.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/pages/scripts/dashboard.min.js') }}"></script>
         <!-- END PAGE LEVEL SCRIPTS -->

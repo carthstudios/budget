@@ -187,12 +187,14 @@
                                 @endphp
                                 @foreach($records as $record)
                                     <li>
-                                        <div class="col1">
+                                        <div class="col1" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
                                             <b> {{ $record->user->name }}</b>
                                             <br />
-                                            {{ str_limit($record->category->name, 28) }}
+                                            {{ $record->category->name }}
                                             <br />
-                                            <i>{{ str_limit($record->comment, 28) }}</i>
+                                            <a class="mt-sweetalert" data-title="{{ $record->category->name }}" data-message="{{ $record->comment }}" data-type="info" data-allow-outside-click="true" data-confirm-button-class="btn-info">
+                                                <i>{{ $record->comment }}</i>
+                                            </a>
                                         </div>
                                         <div class="col2">
                                             <div class="date">
@@ -219,9 +221,9 @@
                                         <div class="col1">
                                             <b> {{ $record->user->name }}</b>
                                             <br />
-                                            {{ str_limit($record->category->name, 28) }}
+                                            {{ str_limit($record->category->name, 23) }}
                                             <br />
-                                            <i>{{ str_limit($record->comment, 28) }}</i>
+                                            <i>{{ str_limit($record->comment, 23) }}</i>
                                         </div>
                                         <div class="col2">
                                             <div class="date">
