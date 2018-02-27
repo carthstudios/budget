@@ -27,3 +27,23 @@ Route::prefix('/admin')->group(function () {
         });
     });
 });
+
+Route::prefix('/config')->group(function () {
+    Route::prefix('/budget')->group(function () {
+        Route::get('/',             'config\BudgetController@view');
+        Route::post('/mupdate',     'config\BudgetController@monthly_update');
+        Route::post('/pupdate',     'config\BudgetController@put_aside_update');
+        Route::get('/premove/{id}', 'config\BudgetController@put_aside_remove');
+        Route::post('/padd',        'config\BudgetController@put_aside_add');
+    });
+});
+
+/*
+@if($putAside->category->id == \App\BudgetPutAsidePlan::PUTSIDE_CATEGORY_ID)
+    <span class='label lable-sm bg-blue bg-font-blue'> ACC </span>
+@elseif($putAside->category->is_positive)
+    <span class='label lable-sm bg-green-jungle bg-font-green-jungle'> IN </span>
+@else
+    <span class='label lable-sm bg-red bg-font-red'> OUT </span>
+@endif
+ */

@@ -130,12 +130,22 @@
                                                     <span class="arrow"></span>
                                                 </a>
                                             </li>
-                                            <li aria-haspopup="true" class="menu-dropdown mega-menu-dropdown @if(Request::is('configurations')) active @endif ">
+
+
+                                            <li aria-haspopup="true" class="menu-dropdown mega-menu-dropdown @if(Request::is('configurations/*')) active @endif">
                                                 <a href="javascript:;">
-                                                    <i class="fa fa-sliders"></i>
+                                                    <i class="fa fa-wrench"></i>
                                                     Configurations
                                                     <span class="arrow"></span>
                                                 </a>
+                                                <ul class="dropdown-menu pull-left">
+                                                    <li aria-haspopup="true" class=" @if(Request::is('admin/family/*')) active @endif ">
+                                                        <a href="{{ url('/config/budget') }}" class="nav-link  ">
+                                                            <i class="fa fa-thumb-tack"></i>
+                                                            Budget
+                                                        </a>
+                                                    </li>
+                                                </ul>
                                             </li>
 
                                             <li aria-haspopup="true" class="menu-dropdown mega-menu-dropdown @if(Request::is('family')) active @endif ">
@@ -206,7 +216,13 @@
                                         <div class="mt-content-body">
                                             <div class="row">
 
-                                                @yield('content')
+                                                <div class="container">
+                                                    <div class="row justify-content-center">
+                                                        <div class="col-md-12">
+                                                            @yield('content')
+                                                        </div>
+                                                    </div>
+                                                </div>
 
                                             </div>
                                         </div>

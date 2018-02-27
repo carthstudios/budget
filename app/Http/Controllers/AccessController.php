@@ -42,13 +42,16 @@ class AccessController extends Controller
 
         $lookedup_user = User::where('email', $google_user->email)->first();
 
-        if (empty($lookedup_user) || $lookedup_user->family_id == null)
+        if (empty($lookedup_user) || is_null($lookedup_user->family_id))
         {
             return view('access.login_not_auth');
         }
 
         // Update data at every logon
-        $lookedup_user->name = $google_user->name;
+        if (is_null($lookedup_user->name))
+        {
+            $lookedup_user->name = $google_user->name;
+        }
         $lookedup_user->avatar = $google_user->avatar;
         $lookedup_user->save();
 
