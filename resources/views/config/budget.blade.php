@@ -132,7 +132,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <input type="hidden" name="monthly_plan_id" value="{{ $monthly_plan_id }}" />
+                                                    <input type="hidden" name="category_id" value="{{ $category->id }}" />
                                                     <button class="btn dark btn-outline" data-dismiss="modal" aria-hidden="true">Close</button>
                                                     <button type="submit" class="btn blue">Save changes</button>
                                                 </div>
@@ -167,9 +167,8 @@
                         <tr>
                             <th> &nbsp; </th>
                             <th> Category </th>
-                            <th> Expected movement </th>
                             <th> Comment </th>
-                            <th> Frequency </th>
+                            <th> Yearly movement </th>
                             <th> Monthly share </th>
                             <th> Actions </th>
                         </tr>
@@ -186,40 +185,13 @@
                                     <span class='label lable-sm bg-red bg-font-red'> OUT </span>
                                 @endif
                             </td>
-                            <td>
-                                {{ $putAside->category->name }}
-                            </td>
-                            <td>
-                                {{ number_format($putAside->amount / 100, 2) }}
-                            </td>
-                            <td>
-                                {{ $putAside->comment }}
-                            </td>
-                            <td>
-                                @switch($putAside->type)
-                                    @case(\App\BudgetPutAsidePlan::TYPE_YEARLY)
-                                        <span class="label label-primary"> Yearly </span>
-                                        @break
 
-                                    @case(\App\BudgetPutAsidePlan::TYPE_MONTHLY)
-                                        <span class="label label-danger"> Monthly </span>
-                                        @break
+                            <td> {{ $putAside->category->name }} </td>
+                            <td> {{ $putAside->comment }} </td>
 
-                                @endswitch
-                            </td>
-                            <td>
-                                @switch($putAside->type)
-                                    @case(\App\BudgetPutAsidePlan::TYPE_YEARLY)
-                                        {{ number_format(($putAside->amount / 12) / 100, 2) }}
-                                    @break
+                            <td> {{ number_format($putAside->amount / 100, 2) }} </td>
+                            <td> {{ number_format(($putAside->amount / 12) / 100, 2) }} </td>
 
-                                    @case(\App\BudgetPutAsidePlan::TYPE_MONTHLY)
-                                    {{ number_format($putAside->amount / 100, 2) }}
-                                    @break
-
-                                @endswitch
-
-                            </td>
                             <td>
                                 <a data-target="#modal_putaside_{{ $category->id }}" data-toggle="modal">
                                     <span class='label lable-sm bg-green bg-font-green'>
@@ -236,8 +208,6 @@
                                         Remove
                                     </span>
                                 </a>
-
-
 
                                 <div id="modal_putaside_{{ $category->id }}" class="modal fade" role="dialog" aria-hidden="true" style="display: none;">
                                     <form action="{{ url('config/budget/pupdate') }}" method="post">
@@ -288,29 +258,6 @@
                                                         </div>
                                                     </div>
 
-                                                    <div class="form-group">
-                                                        <label>Frequency</label>
-                                                        <div class="input-icon">
-
-                                                            <div class="md-radio-inline">
-                                                                <div class="md-radio">
-                                                                    <input type="radio" id="checkbox1_8" name="frequency" class="md-radiobtn" value="{{ \App\BudgetPutAsidePlan::TYPE_MONTHLY }}" @if($putAside->type == \App\BudgetPutAsidePlan::TYPE_MONTHLY) checked @endif  />
-                                                                    <label for="checkbox1_8">
-                                                                        <span></span>
-                                                                        <span class="check"></span>
-                                                                        <span class="box"></span> Monthly </label>
-                                                                </div>
-                                                                <div class="md-radio">
-                                                                    <input type="radio" id="checkbox1_9" name="frequency" class="md-radiobtn" value="{{ \App\BudgetPutAsidePlan::TYPE_YEARLY }}" @if($putAside->type == \App\BudgetPutAsidePlan::TYPE_YEARLY) checked @endif />
-                                                                    <label for="checkbox1_9">
-                                                                        <span></span>
-                                                                        <span class="check"></span>
-                                                                        <span class="box"></span> Yearly </label>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <input type="hidden" name="putaside_id" value="{{ $putAside->id }}" />
@@ -372,30 +319,6 @@
                     <div class="input-icon">
                         <i class="fa fa-money"></i>
                         <input type="number" class="form-control" placeholder="0.00" id="amount" name="amount" step="0.01" min="0" required />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label>Frequency</label>
-                    <div class="input-icon">
-
-                        <div class="md-radio-inline">
-                            <div class="md-radio">
-                                <input type="radio" id="checkbox1_8" name="frequency" class="md-radiobtn" value="{{ \App\BudgetPutAsidePlan::TYPE_MONTHLY }}" />
-                                <label for="checkbox1_8">
-                                    <span></span>
-                                    <span class="check"></span>
-                                    <span class="box"></span> Monthly </label>
-                            </div>
-                            <div class="md-radio">
-                                <input type="radio" id="checkbox1_9" name="frequency" class="md-radiobtn" value="{{ \App\BudgetPutAsidePlan::TYPE_YEARLY }}" checked />
-                                <label for="checkbox1_9">
-                                    <span></span>
-                                    <span class="check"></span>
-                                    <span class="box"></span> Yearly </label>
-                            </div>
-                        </div>
-
                     </div>
                 </div>
 

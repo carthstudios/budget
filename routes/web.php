@@ -38,6 +38,10 @@ Route::prefix('/config')->group(function () {
     });
 });
 
+Route::prefix('/budget')->group(function () {
+    Route::get('/{month?}/{year?}', 'BudgetOverviewController@view');
+});
+
 /*
 @if($putAside->category->id == \App\BudgetPutAsidePlan::PUTSIDE_CATEGORY_ID)
     <span class='label lable-sm bg-blue bg-font-blue'> ACC </span>

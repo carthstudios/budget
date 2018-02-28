@@ -23,15 +23,30 @@ class BudgetController extends Controller
 
     public function monthly_update(Request $request)
     {
-        $monthly_plan_id    = $request->get('monthly_plan_id');
-        $amount             = intval(floatval($request->get('amount')) * 100);
-        $comment            = $request->get('comment');
+        $category_id    = $request->get('category_id');
+        $amount         = intval(floatval($request->get('amount')) * 100);
+        $comment        = $request->get('comment');
 
-        $monthly_budget = BudgetMonthlyPlan::find($monthly_plan_id);
+        $monthly_budget = BudgetMonthlyPlan::where('family_id', Auth::user()->family_id)
+                            ->where('category_id', $category_id)->first();
 
         if (empty($monthly_budget))
         {
-            return redirect()->back()->withErrors(['Was not able to update monthly plan!']);
+            $monthly_budget = new BudgetMonthlyPlan;
+
+            $monthly_budget->category_id    = $category_id;
+            $monthly_budget->family_id      = Auth::user()->family_id;
+            $monthly_budget->amount         = $amount;
+            $monthly_budget->comment        = $comment;
+            $monthly_budget->save();
+
+            return redirect()->back()->with('success', "Monthly plan created!");
+        }
+
+        if ($amount == 0 && strlen($comment) == 0)
+        {
+            $monthly_budget->delete();
+            return redirect()->back()->with('success', "Monthly plan removed!");
         }
 
         $monthly_budget->amount     = $amount;
@@ -47,7 +62,6 @@ class BudgetController extends Controller
         $category_id    = $request->get('category_id');
         $amount         = intval(floatval($request->get('amount')) * 100);
         $comment        = $request->get('comment');
-        $frequency      = intval($request->get('frequency'));
 
         $putAside = BudgetPutAsidePlan::find($putAside_id);
 
@@ -59,7 +73,6 @@ class BudgetController extends Controller
         $putAside->amount       = $amount;
         $putAside->comment      = $comment;
         $putAside->category_id  = $category_id;
-        $putAside->type         = $frequency;
         $putAside->save();
 
         $this->update_monthly_budget_for_putaside();
@@ -89,7 +102,6 @@ class BudgetController extends Controller
         $putAside->amount       = intval(floatval($request->get('amount')) * 100);
         $putAside->comment      = $request->get('comment');
         $putAside->category_id  = $request->get('category_id');
-        $putAside->type         = intval($request->get('frequency'));
         $putAside->family_id    = Auth::user()->family_id;
         $putAside->save();
 
@@ -104,15 +116,7 @@ class BudgetController extends Controller
         $sum = 0;
         foreach(BudgetPutAsidePlan::where('family_id', Auth::user()->family_id)->get() as $budget_putaside)
         {
-            if ($budget_putaside->type == BudgetPutAsidePlan::TYPE_MONTHLY)
-            {
-                $sum += $budget_putaside->amount;
-            }
-            else
-            {
-                $sum += $budget_putaside->amount / 12;
-            }
-
+            $sum += $budget_putaside->amount / 12;
         }
 
         // Update record in the monthly budget

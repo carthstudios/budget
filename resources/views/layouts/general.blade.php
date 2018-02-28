@@ -124,7 +124,7 @@
                                                 </a>
                                             </li>
                                             <li aria-haspopup="true" class="menu-dropdown mega-menu-dropdown @if(Request::is('budget')) active @endif ">
-                                                <a href="javascript:;">
+                                                <a href="{{ url('budget') }}">
                                                     <i class="fa fa-calculator"></i>
                                                     Budget
                                                     <span class="arrow"></span>
