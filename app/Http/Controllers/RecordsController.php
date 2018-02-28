@@ -46,7 +46,7 @@ class RecordsController extends Controller
 
         $currency   = $request->input('currency');
         $comment    = $request->input('comment');
-        $amount     = intval($request->input('amount'))*100;
+        $amount     = intval(floatval($request->input('amount'))*100);
 
         if (in_array($currency, ['EUR', 'USD', 'SGD']))
         {
