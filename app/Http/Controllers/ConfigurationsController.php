@@ -28,7 +28,9 @@ class ConfigurationsController extends Controller
                     $category->comment            = $budgets->where('category_id', $category->id)->first()->comment;
                 }
 
-                $category->records_count = Record::where('category_id', $category->id)->get()->count() + $budgets->where('category_id', $category->id)->count();
+                $category->records_count = Record::where('category_id', $category->id)->get()->count();
+                $category->records_count += $budgets->where('category_id', $category->id)->count();
+                $category->records_count += BudgetPutAsidePlan::where('category_id', $category->id)->count();
             });
 
         $putAsides = BudgetPutAsidePlan::where('family_id', Auth::user()->family_id)->get();
