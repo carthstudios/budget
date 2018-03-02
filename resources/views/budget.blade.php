@@ -97,6 +97,10 @@
 
                                 $positives_budget += $positive_budget;
                             }
+                            else
+                            {
+                                $positive_budget = 0;
+                            }
 
                             if ($negative = $negatives->shift())
                             {
@@ -115,6 +119,10 @@
                                     });
 
                                 $negatives_budget += $negative_budget;
+                            }
+                            else
+                            {
+                                $negative_budget = 0;
                             }
                         @endphp
 

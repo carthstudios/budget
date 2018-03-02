@@ -131,28 +131,12 @@
                                                 </a>
                                             </li>
 
-
-                                            <li aria-haspopup="true" class="menu-dropdown mega-menu-dropdown @if(Request::is('configurations/*')) active @endif">
-                                                <a href="javascript:;">
+                                            <li aria-haspopup="true" class="menu-dropdown mega-menu-dropdown @if(Request::is('configurations/*')) active @endif ">
+                                                <a href="{{ url('configurations') }}">
                                                     <i class="fa fa-wrench"></i>
                                                     Configurations
                                                     <span class="arrow"></span>
                                                 </a>
-
-                                                <ul class="dropdown-menu pull-left">
-                                                    <li aria-haspopup="true">
-                                                        <a href="{{ url('/config/categories') }}" class="nav-link">
-                                                            <i class="fa fa-folder-open-o"></i>
-                                                            Categories
-                                                        </a>
-                                                    </li>
-                                                    <li aria-haspopup="true">
-                                                        <a href="{{ url('/config/budget') }}" class="nav-link">
-                                                            <i class="fa fa-thumb-tack"></i>
-                                                            Budget
-                                                        </a>
-                                                    </li>
-                                                </ul>
                                             </li>
 
                                             <li aria-haspopup="true" class="menu-dropdown mega-menu-dropdown @if(Request::is('family')) active @endif ">
@@ -291,6 +275,7 @@
         <script type="text/javascript" src="{{ asset('assets/global/plugins/bootstrap-select/js/bootstrap-select.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/global/plugins/bootstrap-confirmation/bootstrap-confirmation.min.js') }}"></script>
 
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
@@ -298,6 +283,7 @@
         <!-- END THEME GLOBAL SCRIPTS -->
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
         <script type="text/javascript" src="{{ asset('assets/pages/scripts/components-date-time-pickers.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/pages/scripts/ui-confirmations.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/pages/scripts/ui-sweetalert.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/pages/scripts/components-bootstrap-select.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/pages/scripts/dashboard.min.js') }}"></script>

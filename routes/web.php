@@ -28,33 +28,17 @@ Route::prefix('/admin')->group(function () {
     });
 });
 
-Route::prefix('/config')->group(function () {
-    Route::prefix('/categories')->group(function () {
-        Route::get('/',             'config\CategoriesController@view');
-        Route::get('/remove/{id}',  'config\CategoriesController@remove');
-        Route::post('/edit/{id}',   'config\CategoriesController@edit');
-        Route::post('/add',         'config\CategoriesController@add');
-    });
-
-    Route::prefix('/budget')->group(function () {
-        Route::get('/',             'config\BudgetController@view');
-        Route::post('/mupdate',     'config\BudgetController@monthly_update');
-        Route::post('/pupdate',     'config\BudgetController@put_aside_update');
-        Route::get('/premove/{id}', 'config\BudgetController@put_aside_remove');
-        Route::post('/padd',        'config\BudgetController@put_aside_add');
-    });
+Route::prefix('/configurations')->group(function () {
+    Route::get('/',                     'ConfigurationsController@view');
+    Route::post('/category_edit/{id}',  'ConfigurationsController@category_edit');
+    Route::post('/category_add',        'ConfigurationsController@category_add');
+    Route::get('/category_remove/{id}', 'ConfigurationsController@category_remove');
+    Route::post('/budget_update/{id}',  'ConfigurationsController@budget_update');
+    Route::post('/putaside_add',        'ConfigurationsController@putaside_add');
+    Route::post('/putaside_edit/{id}',  'ConfigurationsController@putaside_edit');
+    Route::get('/putaside_remove/{id}', 'ConfigurationsController@putaside_remove');
 });
 
 Route::prefix('/budget')->group(function () {
-    Route::get('/{month?}/{year?}', 'BudgetOverviewController@view');
+    Route::get('/{month?}/{year?}', 'BudgetController@view');
 });
-
-/*
-@if($putAside->category->id == \App\BudgetPutAsidePlan::PUTSIDE_CATEGORY_ID)
-    <span class='label lable-sm bg-blue bg-font-blue'> ACC </span>
-@elseif($putAside->category->is_positive)
-    <span class='label lable-sm bg-green-jungle bg-font-green-jungle'> IN </span>
-@else
-    <span class='label lable-sm bg-red bg-font-red'> OUT </span>
-@endif
- */
