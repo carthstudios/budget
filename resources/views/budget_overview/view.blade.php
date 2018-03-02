@@ -160,7 +160,7 @@
                                 @endif
                             </td>
                             <td @if($negative->id == \App\BudgetPutAsidePlan::PUTSIDE_CATEGORY_ID) class="bg-blue-sharp bg-font-blue-sharp" @endif>
-                                @if(isset($negative) && $negative_budget > 0) +{{ number_format($negative_budget / 100, 2) }} @endif
+                                @if(isset($negative) && $negative_budget > 0) -{{ number_format($negative_budget / 100, 2) }} @endif
                             </td>
                         </tr>
                     @endwhile
@@ -204,7 +204,7 @@
                 <blockquote>
                     <p>
                         Monthly balance:
-                        @if($positives_sum - $negatives_sum > 0)
+                        @if($positives_sum - $negatives_sum >= 0)
                             <span class="font-green-jungle"><b>+{{ number_format(($positives_sum - $negatives_sum) / 100, 2) }}</b></span>
                             <span class="label bg-green-jungle bg-font-green-jungle">
                                 <i class="fa fa-thumbs-o-up"></i>

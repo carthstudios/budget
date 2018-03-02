@@ -279,8 +279,7 @@
                 </table>
             </div>
 
-            <h4><b>Add new put aside record</b></h4>
-
+            <h4 class="form-section"><b>Add new put aside record</b></h4>
 
             <form action="{{ url('config/budget/padd') }}" method="post">
 

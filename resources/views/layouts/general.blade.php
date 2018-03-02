@@ -18,9 +18,9 @@
         <!-- BEGIN PAGE LEVEL PLUGINS -->
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/global/plugins/bootstrap-sweetalert/sweetalert.css') }}" />
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/global/plugins/bootstrap-select/css/bootstrap-select.css') }}" />
-        <link rel="stylesheet" type="text/css" href="{{ asset('assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.css') }}" />
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/global/plugins/morris/morris.css') }}" />
         <link rel="stylesheet" type="text/css" href="{{ asset('assets/global/plugins/socicon/socicon.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('assets/global/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') }}" />
 
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL STYLES -->
@@ -138,9 +138,16 @@
                                                     Configurations
                                                     <span class="arrow"></span>
                                                 </a>
+
                                                 <ul class="dropdown-menu pull-left">
-                                                    <li aria-haspopup="true" class=" @if(Request::is('admin/family/*')) active @endif ">
-                                                        <a href="{{ url('/config/budget') }}" class="nav-link  ">
+                                                    <li aria-haspopup="true">
+                                                        <a href="{{ url('/config/categories') }}" class="nav-link">
+                                                            <i class="fa fa-folder-open-o"></i>
+                                                            Categories
+                                                        </a>
+                                                    </li>
+                                                    <li aria-haspopup="true">
+                                                        <a href="{{ url('/config/budget') }}" class="nav-link">
                                                             <i class="fa fa-thumb-tack"></i>
                                                             Budget
                                                         </a>
@@ -271,7 +278,6 @@
         <!-- END CORE PLUGINS -->
         <!-- BEGIN PAGE LEVEL PLUGINS -->
         <script type="text/javascript" src="{{ asset('assets/global/plugins/moment.min.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('assets/global/plugins/bootstrap-daterangepicker/daterangepicker.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/global/plugins/morris/morris.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/global/plugins/morris/raphael-min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/global/plugins/counterup/jquery.waypoints.min.js') }}"></script>
@@ -284,12 +290,14 @@
         <script type="text/javascript" src="{{ asset('assets/global/plugins/jquery.sparkline.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/global/plugins/bootstrap-select/js/bootstrap-select.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/global/plugins/bootstrap-sweetalert/sweetalert.min.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
 
         <!-- END PAGE LEVEL PLUGINS -->
         <!-- BEGIN THEME GLOBAL SCRIPTS -->
         <script type="text/javascript" src="{{ asset('assets/global/scripts/app.min.js') }}"></script>
         <!-- END THEME GLOBAL SCRIPTS -->
         <!-- BEGIN PAGE LEVEL SCRIPTS -->
+        <script type="text/javascript" src="{{ asset('assets/pages/scripts/components-date-time-pickers.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/pages/scripts/ui-sweetalert.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/pages/scripts/components-bootstrap-select.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('assets/pages/scripts/dashboard.min.js') }}"></script>

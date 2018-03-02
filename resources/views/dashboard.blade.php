@@ -155,10 +155,24 @@
 
                                     </div>
                                 </div>
+
+                                <div class="form-group">
+                                    <label>Date of the movement</label>
+
+                                    <div class="input-group date bs-datetime date-picker">
+                                        <input class="form-control" type="text" name="date" value="{{ old('date') }}"/>
+                                        <span class="input-group-addon">
+                                            <button class="btn default date-set" type="button">
+                                                <i class="fa fa-calendar"></i>
+                                            </button>
+                                        </span>
+                                    </div>
+
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button class="btn dark btn-outline" data-dismiss="modal" aria-hidden="true">Close</button>
-                                <button class="btn blue" data-dismiss="modal">Save changes</button>
+                                <button class="btn blue" data-dismiss="modal">Save option</button>
                             </div>
                         </div>
                     </div>
@@ -174,7 +188,7 @@
         <div class="portlet-title tabbable-line">
             <div class="caption caption-md">
                 <i class="icon-globe theme-font hide"></i>
-                <span class="caption-subject font-blue-madison bold uppercase">Last movements</span>
+                <span class="caption-subject font-blue-madison bold uppercase">Last movements created</span>
             </div>
             <ul class="nav nav-tabs">
                 <li class="active">
@@ -200,8 +214,8 @@
                                     <br />
                                     {{ $record->category->name }}
                                     <br />
-                                    <a class="mt-sweetalert" data-title="{{ $record->category->name }}" data-message="{{ $record->comment }}" data-type="info" data-allow-outside-click="true" data-confirm-button-class="btn-info">
-                                        <i>{{ $record->comment }}</i>
+                                    <a class="mt-sweetalert" data-title="{{ $record->category->name }}" data-message="{{ $record->comment }} (Took place on: {{ $record->date->format('j M Y') }})" data-type="info" data-allow-outside-click="true" data-confirm-button-class="btn-info">
+                                        <i>{{ $record->comment }} (Took place on: {{ $record->date->format('j M Y') }})</i>
                                     </a>
                                 </div>
                                 <div class="col2">
@@ -233,8 +247,8 @@
                                     <br />
                                     {{ $record->category->name }}
                                     <br />
-                                    <a class="mt-sweetalert" data-title="{{ $record->category->name }}" data-message="{{ $record->comment }}" data-type="info" data-allow-outside-click="true" data-confirm-button-class="btn-info">
-                                        <i>{{ $record->comment }}</i>
+                                    <a class="mt-sweetalert" data-title="{{ $record->category->name }}" data-message="{{ $record->comment }} (Took place on: {{ $record->date->format('j M Y') }})" data-type="info" data-allow-outside-click="true" data-confirm-button-class="btn-info">
+                                        <i>{{ $record->comment }} (Took place on: {{ $record->date->format('j M Y') }})</i>
                                     </a>
                                 </div>
                                 <div class="col2">

@@ -3,9 +3,14 @@ var ComponentsDateTimePickers = function () {
     var handleDatePickers = function () {
 
         if (jQuery().datepicker) {
+
             $('.date-picker').datepicker({
                 rtl: App.isRTL(),
-                orientation: "left",
+                // orientation: "left",
+                format: "dd.mm.yyyy",
+                fontAwesome: true,
+                pickerPosition: (App.isRTL() ? "bottom-right" : "bottom-left"),
+
                 autoclose: true
             });
             //$('body').removeClass("modal-open"); // fix bug when inline picker is used in modal
@@ -15,7 +20,7 @@ var ComponentsDateTimePickers = function () {
     
         // Workaround to fix datepicker position on window scroll
         $( document ).scroll(function(){
-            $('#form_modal2 .date-picker').datepicker('place'); //#modal is the id of the modal
+            $('#modal_demo_2 .date-picker').datepicker('place'); //#modal is the id of the modal
         });
     }
 

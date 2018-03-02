@@ -29,6 +29,13 @@ Route::prefix('/admin')->group(function () {
 });
 
 Route::prefix('/config')->group(function () {
+    Route::prefix('/categories')->group(function () {
+        Route::get('/',             'config\CategoriesController@view');
+        Route::get('/remove/{id}',  'config\CategoriesController@remove');
+        Route::post('/edit/{id}',   'config\CategoriesController@edit');
+        Route::post('/add',         'config\CategoriesController@add');
+    });
+
     Route::prefix('/budget')->group(function () {
         Route::get('/',             'config\BudgetController@view');
         Route::post('/mupdate',     'config\BudgetController@monthly_update');

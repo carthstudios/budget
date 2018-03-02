@@ -48,6 +48,15 @@ class RecordsController extends Controller
         $comment    = $request->input('comment');
         $amount     = intval(floatval($request->input('amount'))*100);
 
+        try
+        {
+            $date = Carbon::createFromFormat('d.m.Y', $request->get('date', "N/A"));
+        }
+        catch(\InvalidArgumentException $e)
+        {
+            $date = Carbon::now();
+        }
+
         if (in_array($currency, ['EUR', 'USD', 'SGD']))
         {
             $category    = Category::find(intval($request->input('category')));
@@ -56,7 +65,7 @@ class RecordsController extends Controller
         }
 
         $new_record = new Record;
-        $new_record->date           = Carbon::now();
+        $new_record->date           = $date;
         $new_record->user_id        = Auth::user()->id;
         $new_record->family_id      = Auth::user()->family_id;
         $new_record->amount         = $amount;
